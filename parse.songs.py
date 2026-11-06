@@ -15,22 +15,35 @@ def parse_song_file(filepath):
     }
     
     content_mode = False
+    header_keys = ("title:", "artist:", "youtube:", "singalong:", "christmas:")
+    
     for line in lines:
-        if line.strip() == "---":
+        stripped = line.strip()
+        
+        # Check for standard dividers (---, ===, ***)
+        if stripped in ("---", "===", "***"):
             content_mode = True
             continue
             
         if not content_mode:
-            if line.lower().startswith("title:"):
-                song["title"] = line.split(":", 1)[1].strip().strip('"\'')
-            elif line.lower().startswith("artist:"):
-                song["artist"] = line.split(":", 1)[1].strip()
-            elif line.lower().startswith("youtube:"):
-                song["youtube"] = line.split(":", 1)[1].strip()
-            elif line.lower().startswith("singalong:"):
-                song["is_sing_along"] = line.split(":", 1)[1].strip().lower() == "true"
-            elif line.lower().startswith("christmas:"):
-                song["is_christmas"] = line.split(":", 1)[1].strip().lower() == "true"
+            # Check if it's a valid metadata header
+            lower_line = line.lower()
+            if lower_line.startswith(header_keys):
+                if lower_line.startswith("title:"):
+                    song["title"] = line.split(":", 1)[1].strip().strip('"\'')
+                elif lower_line.startswith("artist:"):
+                    song["artist"] = line.split(":", 1)[1].strip()
+                elif lower_line.startswith("youtube:"):
+                    song["youtube"] = line.split(":", 1)[1].strip()
+                elif lower_line.startswith("singalong:"):
+                    song["is_sing_along"] = line.split(":", 1)[1].strip().lower() == "true"
+                elif lower_line.startswith("christmas:"):
+                    song["is_christmas"] = line.split(":", 1)[1].strip().lower() == "true"
+            else:
+                # If a file doesn't have '---', switch to content mode automatically once we hit non-header lines
+                if stripped:
+                    content_mode = True
+                    song["content"].append(line)
         else:
             song["content"].append(line)
             
