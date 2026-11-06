@@ -22,8 +22,7 @@ def parse_song_file(filepath):
             
         if not content_mode:
             if line.lower().startswith("title:"):
-                raw_title = line.split(":", 1)[1].strip()
-                song["title"] = raw_title.strip('"\'')
+                song["title"] = line.split(":", 1)[1].strip().strip('"\'')
             elif line.lower().startswith("artist:"):
                 song["artist"] = line.split(":", 1)[1].strip()
             elif line.lower().startswith("youtube:"):
@@ -38,7 +37,6 @@ def parse_song_file(filepath):
     return song
 
 def append_to_library(input_folder, output_json_path):
-    # 1. Load existing library if the file already exists
     song_library = []
     if os.path.exists(output_json_path):
         with open(output_json_path, 'r', encoding='utf-8') as f:
@@ -48,7 +46,7 @@ def append_to_library(input_folder, output_json_path):
             except json.JSONDecodeError:
                 print("Existing JSON was empty or malformed, starting fresh.")
                 
-    # Clean out any pre-existing duplicates from songs.json by title
+    # Clean out duplicates by title
     seen_titles = set()
     deduped_library = []
     for song in song_library:
@@ -58,7 +56,7 @@ def append_to_library(input_folder, output_json_path):
             deduped_library.append(song)
     song_library = deduped_library
     
-    # 2. Parse the text files and check for duplicates by title
+    # Parse text files
     new_songs = []
     skipped_count = 0
     for filename in os.listdir(input_folder):
@@ -66,25 +64,21 @@ def append_to_library(input_folder, output_json_path):
             filepath = os.path.join(input_folder, filename)
             song_data = parse_song_file(filepath)
             
-            # Normalize the title for comparison
             song_title = song_data.get("title", "").strip().lower()
             
-           # Only add if title exists and isn't already in the library
             if song_title and song_title not in seen_titles:
                 new_songs.append(song_data)
                 seen_titles.add(song_title)
             else:
                 skipped_count += 1
-                print(f"Skipping duplicate title: {song_data.get('title')}")
+                print(f"Skipping duplicate or empty title: {song_data.get('title')}")
                 
-  # 3. Append new songs to the existing library list (if any new ones found)
     if new_songs:
         song_library.extend(new_songs)
         
-    # SORT THE ENTIRE LIBRARY ALPHABETICALLY BY TITLE
+    # CRITICAL: Sort the entire library alphabetically by title for the menu
     song_library.sort(key=lambda x: x.get("title", "").strip().lower())
 
-    # 4. Save the combined/cleaned list back to songs.json
     with open(output_json_path, 'w', encoding='utf-8') as f:
         json.dump(song_library, f, indent=4)
             
