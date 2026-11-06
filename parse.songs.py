@@ -22,7 +22,8 @@ def parse_song_file(filepath):
             
         if not content_mode:
             if line.lower().startswith("title:"):
-                song["title"] = line.split(":", 1)[1].strip()
+                raw_title = line.split(":", 1)[1].strip()
+                song["title"] = raw_title.strip('"\'')
             elif line.lower().startswith("artist:"):
                 song["artist"] = line.split(":", 1)[1].strip()
             elif line.lower().startswith("youtube:"):
