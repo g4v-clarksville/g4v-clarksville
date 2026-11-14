@@ -89,41 +89,68 @@
 
     <!-- Hero Section -->
     <header class="relative z-10 max-w-7xl mx-auto px-6 pt-8 pb-6 lg:pt-4 lg:pb-8">
-        <div class="grid lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-8">
-               <!-- New Image Container matching the Milestone card structure -->
-                <div class="rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl p-6 shadow-xl max-w-md space-y-4">
-                    <div class="flex items-center justify-between">
-                        <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-xs font-extrabold tracking-wider uppercase border border-amber-500/30">
-                            Chapter Visuals
-                        </span>
-                    </div>
-                    <div class="rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-950/40">
-                        <img src="images/wall_of_guitars_1.jpg" alt="Wall of Guitars" class="w-full h-auto object-cover rounded-xl">
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- Left Column (7 Columns Wide) -->
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
+                
+                <!-- Glowing Wall of Guitars Container (Full Width of Left Column, Aligned at Top) -->
+                <div class="relative p-[2px] rounded-3xl overflow-hidden shadow-2xl shadow-amber-500/20 animate-border-glow w-full">
+                    <div class="relative z-10 bg-slate-900/95 backdrop-blur-xl p-6 rounded-[23px] space-y-4 border border-slate-800/80 flex flex-col justify-between">
+                        
+                        <!-- Header & Badge -->
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-xs font-extrabold tracking-wider uppercase border border-amber-500/30">
+                                    Chapter Visuals
+                                </span>
+                                <span class="text-xs text-slate-400 font-medium">Chapter #287</span>
+                            </div>
+                            <h3 class="text-xl font-bold font-['Space_Grotesk'] text-white mt-2">
+                                Wall of Guitars & Operations
+                            </h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Showcasing our dedicated gear and community gathering spaces.
+                            </p>
+                        </div>
+
+                        <!-- Wall of Guitars Image Preview -->
+                        <div class="rounded-xl overflow-hidden border border-slate-700/50 bg-slate-950/40 relative group flex items-center justify-center p-2">
+                            <img src="images/wall_of_guitars_1.jpg" alt="Wall of Guitars" class="w-full h-64 lg:h-72 object-cover rounded-lg group-hover:scale-[1.02] transition-transform duration-500">
+                        </div>
+
                     </div>
                 </div>
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold tracking-wide uppercase animate-pulse">
+
+                <!-- Active Chapter Command Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold tracking-wide uppercase animate-pulse w-fit">
                     <span class="w-2 h-2 rounded-full bg-amber-400"></span>
                     Active Chapter Command • Est. Feb 18, 2026
                 </div>
-                <h1 class="text-5xl lg:text-7xl font-extrabold font-['Space_Grotesk'] tracking-tight leading-[1.1]">
-                    Acoustic Healing for <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Veterans</span>
-                </h1>
-                <p class="text-slate-400 text-lg leading-relaxed">
-                    Harnessing the therapeutic power of music to restore purpose and community. Operating out of Clarksville, Tennessee, providing structured guitar instruction and lifelong camaraderie.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <a href="operations.html" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/20 flex items-center gap-2">
-                        View Schedule &amp; Events
-                    </a>
-                    <a href="songs.html" class="px-8 py-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-white font-bold hover:bg-slate-800 hover:border-slate-700 transition-all">
-                        Explore 900+ Song Database
-                    </a>
+
+                <!-- Hero Title & Text -->
+                <div class="space-y-6">
+                    <h1 class="text-5xl lg:text-7xl font-extrabold font-['Space_Grotesk'] tracking-tight leading-[1.1]">
+                        Acoustic Healing for <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Veterans</span>
+                    </h1>
+                    <p class="text-slate-400 text-lg leading-relaxed">
+                        Harnessing the therapeutic power of music to restore purpose and community. Operating out of Clarksville, Tennessee, providing structured guitar instruction and lifelong camaraderie.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="operations.html" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/20 flex items-center gap-2">
+                            View Schedule & Events
+                        </a>
+                        <a href="songs.html" class="px-8 py-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-white font-bold hover:bg-slate-800 hover:border-slate-700 transition-all">
+                            Explore 900+ Song Database
+                        </a>
+                    </div>
                 </div>
+
             </div>
 
-            <!-- Bento Cards Column -->
+            <!-- Right Column: Bento Cards Column (5 Columns Wide) -->
             <div class="lg:col-span-5 space-y-6">
+                
                 <!-- Graduation Flash Announcement Card with Continuous Glowing Border -->
                 <div class="relative p-[2px] rounded-3xl overflow-hidden shadow-2xl shadow-amber-500/20 animate-border-glow">
                     <div class="relative z-10 bg-slate-900/95 backdrop-blur-xl p-6 rounded-[23px] space-y-5 border border-slate-800/80">
@@ -159,13 +186,14 @@
                         <!-- Action Button -->
                         <div>
                             <a href="sessions.html" class="w-full inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm transition-all shadow-lg shadow-amber-500/30 transform hover:-translate-y-0.5">
-                                View Operations Schedule &rarr;
+                                View Operations Schedule →
                             </a>
                         </div>
 
                     </div>
                 </div>
                 
+                <!-- Donate & Veterans Reached Mini Cards -->
                 <div class="grid grid-cols-2 gap-4">
                     <div class="p-6 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md flex flex-col justify-between">
                         <div class="w-16 h-16 rounded-2xl bg-white p-2 flex items-center justify-center mb-4 overflow-hidden">
@@ -182,6 +210,7 @@
                         <div class="text-xs text-slate-400">Active Cohort Members</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </header>
